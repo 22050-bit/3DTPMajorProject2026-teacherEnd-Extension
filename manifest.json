@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Pink Slip (Teacher end)",
+  "version": "0.2.2",
+  
+  
+  "icons": { 
+    "16": "icon#1.png", 
+    "32": "icon#1.png", 
+    "48": "icon#1.png", 
+    "128": "icon#1.png" 
+    }, 
+    "action": { 
+      "default_icon": { 
+        "16": "icon#1.png", 
+        "24": "icon#1.png", 
+        "32": "icon#1.png" 
+        }, 
+      "default_title": "Pink Slip (Teacher end)" ,
+      "default_popup": "popup.html"
+    },
+    
+    "background": {
+    "service_worker": "background.js" ,
+    "type":"module"
+    },
+
+  "content_scripts": [
+    {
+    "matches": [
+      "http://localhost:5173/*"
+    ],
+    "js": ["content.js"]
+    }
+  ],
+
+  "host_permissions": [
+  "http://localhost:5173/*"
+  ],
+
+  "permissions": [
+    "windows"
+  ]
+
+}
