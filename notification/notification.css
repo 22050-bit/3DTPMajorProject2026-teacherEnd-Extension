@@ -1,0 +1,33 @@
+body{
+    margin: 0; 
+    background-color: #fbcad4;   
+    margin-left: 5%;
+    width: 526px;
+    height: 530px;
+}
+
+/* new home page for application page elements positioning and style starts here */
+/*universal classes*/
+.yesBox{
+    position: absolute;
+    color:white;
+    background-color: green;
+    height:30px;
+    width:100px;
+    left:50px;
+    top:450px;
+}
+
+.noBox{
+    position: absolute;
+    color: white;
+    background-color: red;
+    height:30px;
+    width: 100px;
+    left:376px; 
+    top: 450px
+}
+
+.biggerTexts{
+    font-size: 15px;
+}

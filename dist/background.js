@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((message) => {
 
     chrome.storage.local.set(data).then(
     chrome.windows.create({
-    url: "notification/notification.html",
+    url: "/notification window/index.html",
     type: "popup",
     focused: true,
     })

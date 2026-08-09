@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pink Slip (Teacher end)",
-  "version": "0.2.5",
+  "version": "0.2.4",
   
   
   "icons": { 
@@ -17,9 +17,9 @@
         "32": "/images/icon1.png" 
         }, 
       "default_title": "Pink Slip (Teacher end)" ,
-      "default_popup": "extensionPopup/popup.html"
+      "default_popup": "/extension popup/index.html"
     },
-
+    
     "background": {
     "service_worker": "background.js" ,
     "type":"module"
