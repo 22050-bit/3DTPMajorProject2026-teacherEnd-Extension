@@ -28,14 +28,14 @@
   "content_scripts": [
     {
     "matches": [
-      "http://localhost:5173/*"
+      "https://test-bdb0b.firebaseapp.com/*"
     ],
     "js": ["content.js"]
     }
   ],
 
   "host_permissions": [
-  "http://localhost:5173/*"
+  "https://test-bdb0b.firebaseapp.com/*"
   ],
 
   "permissions": [

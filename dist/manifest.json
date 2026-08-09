@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pink Slip (Teacher end)",
-  "version": "0.2.4",
+  "version": "0.2.5",
   
   
   "icons": { 
@@ -28,14 +28,14 @@
   "content_scripts": [
     {
     "matches": [
-      "http://localhost:5173/*"
+      "https://test-bdb0b.firebaseapp.com/*"
     ],
     "js": ["content.js"]
     }
   ],
 
   "host_permissions": [
-  "http://localhost:5173/*"
+  "https://test-bdb0b.firebaseapp.com/*"
   ],
 
   "permissions": [
