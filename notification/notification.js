@@ -13,6 +13,7 @@ import {
     onSnapshot,
 } from "firebase/firestore";// Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyAuEz3JIVLCKUV-_jlmRytldLJU5qnnFZM",
   authDomain: "test-bdb0b.firebaseapp.com",
@@ -41,14 +42,15 @@ var dateForApplication;
 var periodOfLeave;
 var reasonOfLeave;
 var timeOfApplication;
+var timeOfDecisionMade; //the other attribute which needs information from the extension to complete
 
 async function GeneralTextAssigning(){
+
     console.log(chrome);
     console.log(chrome.storage);
 
-    const data =  await chrome.storage.local.get(null);
+    const data =  await chrome.storage.local.get(null); //get everything from the storage stored into there by the backgound script
 
-    
     const studentName = document.getElementById("studentName");
     const teacherName = document.getElementById("teacherName");
     const details = document.getElementById("details");
@@ -71,6 +73,7 @@ async function GeneralTextAssigning(){
     reason.textContent = reasonOfLeave;
     details.textContent = "This student would like to leave class on Period " + periodOfLeave +
     " for " + timeNeeded + " minutes."
+
 }
 
 document.addEventListener("DOMContentLoaded",GeneralTextAssigning);
@@ -78,20 +81,34 @@ document.addEventListener("DOMContentLoaded",GeneralTextAssigning);
 
 async function Approved(){
 
-    const documentName = studentID + "-" + dateForApplication + "-" + timeOfApplication;
+    const documentName = studentID + "-" + dateForApplication + "-" + timeOfApplication; //remake the document name
     const docRef = doc(db, "Applications", documentName);
-    await updateDoc(docRef, {isApproved:true});  //access firestore and change the thing
+
+    GetTimeOfDecision();
+
+    await updateDoc(docRef, {
+        isApproved:true,
+        timeOfDecision: timeOfDecisionMade //the time of the decision made
+    });  //access firestore and change the two things. onsnapshot should ensure updating
 
     CleanStorage(); //cleaning the storage for next time's use
+    window.close(); //close the window
 
-    window.close();
 }
 
-approve.onclick = Approved;
+approve.onclick = Approved; //execute when approve button is clicked
 
-function Disapprove(){
+async function Disapprove(){
+
+    GetTimeOfDecision();
+
+    await updateDoc(docRef, {
+        timeOfDecision: timeOfDecisionMade //the time of the decision made
+    }); //update firestore
+    
     CleanStorage();
     window.close();
+
 }
 
 disapprove.onclick = Disapprove;
@@ -124,4 +141,15 @@ function CleanStorage(){
             timeOfApplication:"(Placeholder)",
             isApproved:false})
         );
+}
+
+function GetTimeOfDecision(){ //get the time of which the decision is made
+
+    const now = new Date();
+
+    timeOfDecisionMade = now.toLocaleTimeString("en-GB", {
+        timeZone: "Pacific/Auckland",
+        hour12: false
+    }).slice(0,5); 
+
 }
