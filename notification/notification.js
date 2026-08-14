@@ -100,6 +100,9 @@ approve.onclick = Approved; //execute when approve button is clicked
 
 async function Disapprove(){
 
+    const documentName = studentID + "-" + dateForApplication + "-" + timeOfApplication; //remake the document name
+    const docRef = doc(db, "Applications", documentName);
+    
     GetTimeOfDecision();
 
     await updateDoc(docRef, {
@@ -107,6 +110,7 @@ async function Disapprove(){
     }); //update firestore
     
     CleanStorage();
+
     window.close();
 
 }
