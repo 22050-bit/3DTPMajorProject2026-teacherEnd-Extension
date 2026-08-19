@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((message) => {
 
     chrome.storage.local.set(data).then(
         chrome.windows.create({
-        url: "notification/notification.html",
+        url: "/InbetweenWindow/youGotMail.html",
         type: "popup",
         focused: true,
     })
